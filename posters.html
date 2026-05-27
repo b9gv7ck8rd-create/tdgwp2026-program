@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Poster Session | Theoretical Developments in Gravitational Wave Physics</title>
+<style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0f1b32;
+      --card: rgba(255,255,255,0.085);
+      --card-strong: rgba(255,255,255,0.13);
+      --text: #f7f7fb;
+      --muted: #b8c2d8;
+      --accent: #8ee6ff;
+      --accent2: #ffcf7a;
+      --accent3: #c59cff;
+      --line: rgba(255,255,255,0.16);
+      --shadow: 0 18px 55px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 5%, rgba(142,230,255,0.24), transparent 32%),
+        radial-gradient(circle at 85% 15%, rgba(197,156,255,0.20), transparent 28%),
+        radial-gradient(circle at 75% 75%, rgba(255,207,122,0.16), transparent 30%),
+        linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    header {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 44px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.13), rgba(255,255,255,0.055));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(100deg, transparent 0%, rgba(142,230,255,0.22) 35%, rgba(255,207,122,0.18) 65%, transparent 100%);
+      opacity: 0.65;
+      pointer-events: none;
+      mask: linear-gradient(#000, transparent 18%, transparent 82%, #000);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border: 1px solid rgba(142,230,255,0.35);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(142,230,255,0.09);
+      font-size: 0.86rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 24px 0 14px;
+      font-size: clamp(2.2rem, 6vw, 5.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      max-width: 940px;
+    }
+
+    .subtitle {
+      max-width: 820px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      background: rgba(0,0,0,0.16);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      margin: 30px 0 18px;
+    }
+
+    .search {
+      flex: 1 1 300px;
+      position: relative;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 15px 18px 15px 46px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.09);
+      color: var(--text);
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .search input::placeholder { color: rgba(184,194,216,0.75); }
+    .search::before {
+      content: "⌕";
+      position: absolute;
+      left: 17px;
+      top: 50%;
+      transform: translateY(-53%);
+      color: var(--accent);
+      font-size: 1.35rem;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.95rem;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      padding: 11px 15px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 24px;
+      background: linear-gradient(155deg, var(--card), rgba(255,255,255,0.045));
+      box-shadow: 0 16px 45px rgba(0,0,0,0.22);
+      overflow: hidden;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: linear-gradient(155deg, var(--card-strong), rgba(255,255,255,0.07));
+      border-color: rgba(142,230,255,0.35);
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      right: -75px;
+      top: -75px;
+      background: radial-gradient(circle, rgba(142,230,255,0.18), transparent 68%);
+      pointer-events: none;
+    }
+
+    .tag {
+      align-self: flex-start;
+      display: inline-flex;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,207,122,0.12);
+      color: var(--accent2);
+      border: 1px solid rgba(255,207,122,0.22);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 18px 0 10px;
+      font-size: 1.35rem;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+    }
+
+    .speaker {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 1.02rem;
+    }
+
+    .affiliation {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .about {
+      color: rgba(247,247,251,0.86);
+      line-height: 1.58;
+      margin: 0 0 22px;
+      font-size: 0.98rem;
+    }
+
+    .email {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+      border-radius: 16px;
+      padding: 12px 13px;
+      overflow-wrap: anywhere;
+      font-size: 0.92rem;
+    }
+
+    .email:hover {
+      border-color: rgba(142,230,255,0.45);
+      background: rgba(142,230,255,0.10);
+    }
+
+    .guideline {
+      margin: 18px 0 0;
+      border: 1px solid rgba(255,207,122,0.45);
+      background: linear-gradient(135deg, rgba(255,207,122,0.18), rgba(142,230,255,0.08));
+      border-radius: 24px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      box-shadow: 0 18px 55px rgba(0,0,0,0.22);
+    }
+
+    .guideline .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,207,122,0.22);
+      border: 1px solid rgba(255,207,122,0.36);
+      flex: 0 0 auto;
+      font-size: 1.35rem;
+    }
+
+    .guideline strong {
+      display: block;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .guideline p {
+      margin: 0;
+      color: rgba(247,247,251,0.88);
+      line-height: 1.45;
+      font-size: 0.96rem;
+    }
+
+    footer {
+      margin-top: 34px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+
+    .abstract-box {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.62;
+    }
+
+    .abstract-box summary {
+      cursor: pointer;
+      color: var(--text);
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+
+    .abstract-box p {
+      margin: 10px 0 0;
+      text-align: left;
+    }
+
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stats { grid-template-columns: 1fr; }
+      header { padding: 34px; }
+    }
+
+
+    .abstract-box {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.62;
+    }
+
+    .abstract-box summary {
+      cursor: pointer;
+      color: var(--text);
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+
+    .abstract-box p {
+      margin: 10px 0 0;
+      text-align: left;
+    }
+
+    @media (max-width: 650px) {
+      .page { width: min(100% - 24px, 1180px); padding-top: 24px; }
+      header { padding: 26px; border-radius: 24px; }
+      .grid { grid-template-columns: 1fr; }
+      .card { min-height: unset; }
+      .note { border-radius: 18px; }
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+<header>
+<div class="eyebrow">Poster Session</div>
+<h1>Theoretical Developments in Gravitational Wave Physics</h1>
+<p class="subtitle"><strong>Poster guideline:</strong> Please note that there will be no printer available at the venue. Poster presenters are kindly asked to print their posters in advance and bring them to the poster session.</p>
+</header>
+<section class="toolbar single">
+<label aria-label="Search posters" class="search">
+<input id="searchInput" placeholder="Search by speaker, title, topic, affiliation..." type="search"/>
+</label>
+</section>
+<section class="grid" id="posterGrid">
+<article class="card" data-search="Joao Lucio dos Santos Gravitational Lensing of Fast Radio Bursts Primordial Black Holes Abundance UFCG Leibniz University Heidelberg FRB PBH The Fast Radio Bursts (FRBs) are some of the most intriguing radio phenomena measured in radio astronomy \cite{lorimer}. These energetic bursts have extremely high radio luminosities, corresponding to ∼10³⁶ – 10⁴⁴ erg s−1, which is not far from gamma ray bursts. Since their discovery in 2007, several investigations have been proposed to model their sources and also to use their data for astrophysical and cosmological constraints. Among such efforts, we highlight lensing effects in the propagation of the FRBs, which could be used to constrain Primordial Black Holes (PBHs) \cite{munoz, chime}. These black holes would be produced in the earliest stages of the Universe and could have masses below 1 M⊙\cite{carr}. There are several surveys constraining the possible values of mass and fraction of these black holes, and among these proposals lies the lensing effects of FRBs. In this work, we briefly review some generalities about lensing effects for point sources, and we present a forecast for LOFAR, FAST, and BINGO telescopes. These radio telescopes may characterize several FRBs in the coming years. LOFAR and FAST are operating radio telescopes and are expected to be upgraded in the next few years. BINGO \cite{bingo} is a radio telescope under construction in Brazil that may be promising to detect FRBs. The forecast is based on the design features of each of these radio telescopes, and also on the current dataset of 131 confirmed FRB signals, reported by different surveys. Our forecast suggests that LOFAR would be suitable to characterize fPBH ∼16% for lenses around 1 M⊙, while FAST and BINGO yields to fPBH ∼39% for lenses with 101 M⊙and 10⁻² M⊙, respectively.">
+<span class="tag">Cosmology · PBHs</span>
+<h2>Gravitational Lensing of Fast Radio Bursts as a Probe of Primordial Black Holes Abundance</h2>
+<p class="speaker">Joao Lucio dos Santos</p>
+<p class="affiliation">UFCG, Leibniz University and University of Heidelberg</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>The Fast Radio Bursts (FRBs) are some of the most intriguing radio phenomena measured in radio astronomy \cite{lorimer}. These energetic bursts have extremely high radio luminosities, corresponding to ∼10³⁶ – 10⁴⁴ erg s−1, which is not far from gamma ray bursts. Since their discovery in 2007, several investigations have been proposed to model their sources and also to use their data for astrophysical and cosmological constraints. Among such efforts, we highlight lensing effects in the propagation of the FRBs, which could be used to constrain Primordial Black Holes (PBHs) \cite{munoz, chime}. These black holes would be produced in the earliest stages of the Universe and could have masses below 1 M⊙\cite{carr}. There are several surveys constraining the possible values of mass and fraction of these black holes, and among these proposals lies the lensing effects of FRBs. In this work, we briefly review some generalities about lensing effects for point sources, and we present a forecast for LOFAR, FAST, and BINGO telescopes. These radio telescopes may characterize several FRBs in the coming years. LOFAR and FAST are operating radio telescopes and are expected to be upgraded in the next few years. BINGO \cite{bingo} is a radio telescope under construction in Brazil that may be promising to detect FRBs. The forecast is based on the design features of each of these radio telescopes, and also on the current dataset of 131 confirmed FRB signals, reported by different surveys. Our forecast suggests that LOFAR would be suitable to characterize fPBH ∼16% for lenses around 1 M⊙, while FAST and BINGO yields to fPBH ∼39% for lenses with 101 M⊙and 10⁻² M⊙, respectively.</p></details>
+<a class="email" href="mailto:joaorafael@df.ufcg.edu.br">✉ joaorafael@df.ufcg.edu.br</a>
+</article>
+<article class="card" data-search="Hagar Ariela Meir Suppression of Trapped Surface Formation Quantum Gravitational Effects Ben-Gurion collapse horizonless compact objects black holes Classical general relativity predicts that a contracting, spherically symmetric matter system with a large-enough mass will result in the formation of a trapped region whose outer boundary is an apparent horizon where the gravitational redshift diverges. The incompleteness theorems then lead to the conclusion that the outcome of the collapse is the singular geometry of a Schwarzschild black hole. Both analyses rely on solving Einstein’s equations, a set of partial differential equations, valid in the limit that the Schwarzschild radius is finite but the Planck length is set to zero, so that quantum fluctuations of the geometry are completely absent. Here, we keep both parameters finite, allowing the geometry to fluctuate quantum mechanically, and take the limit of vanishing Planck length only at the end. Expressing the geometry of a spherically symmetric, collapsing, thin shell of matter in terms of an effective quantum field theory in 1+1 dimensions, we show, using the standard techniques of quantum field theory in curved spacetime, that the production of particles as the shell approaches its would-be horizon is finite in the limit of vanishing Planck length. The total number of produced quanta of the gravitational field scales as the Bekenstein-Hawking entropy, while their total energy scales as the mass of the shell. Importantly, the quantum expectation value of the product of the scalar expansion parameters for the associated null vectors is never vanishing. The conclusion is that an apparent horizon is not formed even when the shell has reached its gravitational radius. As the collapse continues, the classical Schwarzschild geometry can no longer be used to describe the shell’s exterior geometry. This provides the sought-after loophole that is needed to explain how astrophysical black holes could be compact objects that are regular and horizonless.">
+<span class="tag">Quantum gravity</span>
+<h2>Suppression of Trapped Surface Formation by Quantum Gravitational Effects</h2>
+<p class="speaker">Hagar Ariela Meir</p>
+<p class="affiliation">Ben-Gurion University of The Negev</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>Classical general relativity predicts that a contracting, spherically symmetric matter system with a large-enough mass will result in the formation of a trapped region whose outer boundary is an apparent horizon where the gravitational redshift diverges. The incompleteness theorems then lead to the conclusion that the outcome of the collapse is the singular geometry of a Schwarzschild black hole. Both analyses rely on solving Einstein’s equations, a set of partial differential equations, valid in the limit that the Schwarzschild radius is finite but the Planck length is set to zero, so that quantum fluctuations of the geometry are completely absent. Here, we keep both parameters finite, allowing the geometry to fluctuate quantum mechanically, and take the limit of vanishing Planck length only at the end. Expressing the geometry of a spherically symmetric, collapsing, thin shell of matter in terms of an effective quantum field theory in 1+1 dimensions, we show, using the standard techniques of quantum field theory in curved spacetime, that the production of particles as the shell approaches its would-be horizon is finite in the limit of vanishing Planck length. The total number of produced quanta of the gravitational field scales as the Bekenstein-Hawking entropy, while their total energy scales as the mass of the shell. Importantly, the quantum expectation value of the product of the scalar expansion parameters for the associated null vectors is never vanishing. The conclusion is that an apparent horizon is not formed even when the shell has reached its gravitational radius. As the collapse continues, the classical Schwarzschild geometry can no longer be used to describe the shell’s exterior geometry. This provides the sought-after loophole that is needed to explain how astrophysical black holes could be compact objects that are regular and horizonless.</p></details>
+<a class="email" href="mailto:hagarmei@post.bgu.ac.il">✉ hagarmei@post.bgu.ac.il</a>
+</article>
+<article class="card" data-search="Jyotirmaya Mohanta Atmospheric Newtonian noise torsion-balance measurements gravitational constant G University of Tsukuba gravity gradients uncertainty budget Measurements of Newton’s gravitational constant remain limited by environmental and apparatusdependent systematics whose treatment is often less explicit than that of instrumental noise. Among these, atmospheric density fluctuations generate unshieldable gravity gradients that couple directly to torsion-balance observables as atmospheric Newtonian noise. Here, we develop a GUMconsistent framework for propagating this contribution through the torque estimator into the uncertainty budget of torsion-balance measurements. We derive closed-form spatial transfer functions for two benchmark geometries: a two-mass dumbbell, which provides an upper-coupling reference, and a perfectly symmetric cross, which serves as an idealized rejection limit and exposes the trade-off between suppressing low-order environmental coupling and preserving signal response. We also separate stationary correlated inputs from non-stationary baseline drift, using the Ornstein–Uhlenbeck process only as a benchmark for the former. Atmospheric pressure benchmarks indicate that the resulting background contribution is below present reference uncertainty levels, but can become relevant as systematic floors approach the part-per-million regime. This framework provides a practical route for incorporating site-specific environmental gravity gradients into future torsion-balance uncertainty budgets.">
+<span class="tag">Precision gravity</span>
+<h2>Atmospheric Newtonian Noise in Torsion-Balance Measurements of the Gravitational Constant G</h2>
+<p class="speaker">Jyotirmaya Mohanta</p>
+<p class="affiliation">University of Tsukuba</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>Measurements of Newton’s gravitational constant remain limited by environmental and apparatusdependent systematics whose treatment is often less explicit than that of instrumental noise. Among these, atmospheric density fluctuations generate unshieldable gravity gradients that couple directly to torsion-balance observables as atmospheric Newtonian noise. Here, we develop a GUMconsistent framework for propagating this contribution through the torque estimator into the uncertainty budget of torsion-balance measurements. We derive closed-form spatial transfer functions for two benchmark geometries: a two-mass dumbbell, which provides an upper-coupling reference, and a perfectly symmetric cross, which serves as an idealized rejection limit and exposes the trade-off between suppressing low-order environmental coupling and preserving signal response. We also separate stationary correlated inputs from non-stationary baseline drift, using the Ornstein–Uhlenbeck process only as a benchmark for the former. Atmospheric pressure benchmarks indicate that the resulting background contribution is below present reference uncertainty levels, but can become relevant as systematic floors approach the part-per-million regime. This framework provides a practical route for incorporating site-specific environmental gravity gradients into future torsion-balance uncertainty budgets.</p></details>
+<a class="email" href="mailto:s2430161@u.tsukuba.ac.jp">✉ s2430161@u.tsukuba.ac.jp</a>
+</article>
+<article class="card" data-search="Jason Kristiano Scattering in de Sitter space YITP Kyoto University amplitudes analytic structure swampland cosmological EFT The analytic structure of scattering amplitudes provides a framework for mapping the fundamental properties of a high-energy (UV) theory onto non-perturbative constraints for low-energy (IR) effective field theories. While this structure is well understood in flat space, its extension to de Sitter space is hindered by the expanding background, which complicates the definition of asymptotic states and breaks time-translation symmetry. In this talk, I will outline a foundational approach to bridging this gap. I will demonstrate how the analytic properties of flat-space amplitudes are imprinted on their de Sitter counterparts. The ultimate goal of this program is to derive Swamplandtype constraints for cosmological EFTs, ensuring they admit a consistent UV completion.">
+<span class="tag">Amplitudes · dS</span>
+<h2>Scattering in de Sitter Space</h2>
+<p class="speaker">Jason Kristiano</p>
+<p class="affiliation">YITP, Kyoto University</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>The analytic structure of scattering amplitudes provides a framework for mapping the fundamental properties of a high-energy (UV) theory onto non-perturbative constraints for low-energy (IR) effective field theories. While this structure is well understood in flat space, its extension to de Sitter space is hindered by the expanding background, which complicates the definition of asymptotic states and breaks time-translation symmetry. In this talk, I will outline a foundational approach to bridging this gap. I will demonstrate how the analytic properties of flat-space amplitudes are imprinted on their de Sitter counterparts. The ultimate goal of this program is to derive Swamplandtype constraints for cosmological EFTs, ensuring they admit a consistent UV completion.</p></details>
+<a class="email" href="mailto:jkristiano@yukawa.kyoto-u.ac.jp">✉ jkristiano@yukawa.kyoto-u.ac.jp</a>
+</article>
+<article class="card" data-search="Kimiko Yamashita Gravitational Positivity Bounds Higgs-Portal Dark Matter Ibaraki University positivity string theory UV completion dark matter Gravitational positivity bounds are constraints on a renormalizable theory in the presence of a massless graviton, under the assumption that the gravitational theory is ultraviolet-completed by a perturbative string theory. We derive these bounds for the Higgs-portal scalar dark matter model using the forward scattering process ϕϕ →ϕϕ. We find that, in the absence of a dark matter self-coupling, new physics beyond the Higgs-portal dark matter interaction must appear below an energy scale of 10¹⁰GeV if the dark matter mass is smaller than the Higgs boson mass. We further find that, in the presence of both interactions, achieving a cutoff scale at the grand unified theory scale generally requires a dark matter mass of order 10¹⁰-10¹¹ GeV (or above), with larger values favored when the four-point self-coupling plays a significant role. For such heavy Higgsportal dark matter, the observed relic abundance of dark matter in the Universe can be successfully reproduced via the freeze-in mechanism with a tiny Higgs-portal coupling, λhϕ ≲3.5 × 10−11. The reheating temperature is then constrained to be Treh ≲10¹⁴ GeV by the positivity bounds on the dark matter mass.">
+<span class="tag">Dark matter</span>
+<h2>Gravitational Positivity Bounds on Higgs-Portal Dark Matter</h2>
+<p class="speaker">Kimiko Yamashita</p>
+<p class="affiliation">Ibaraki University</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>Gravitational positivity bounds are constraints on a renormalizable theory in the presence of a massless graviton, under the assumption that the gravitational theory is ultraviolet-completed by a perturbative string theory. We derive these bounds for the Higgs-portal scalar dark matter model using the forward scattering process ϕϕ →ϕϕ. We find that, in the absence of a dark matter self-coupling, new physics beyond the Higgs-portal dark matter interaction must appear below an energy scale of 10¹⁰GeV if the dark matter mass is smaller than the Higgs boson mass. We further find that, in the presence of both interactions, achieving a cutoff scale at the grand unified theory scale generally requires a dark matter mass of order 10¹⁰-10¹¹ GeV (or above), with larger values favored when the four-point self-coupling plays a significant role. For such heavy Higgsportal dark matter, the observed relic abundance of dark matter in the Universe can be successfully reproduced via the freeze-in mechanism with a tiny Higgs-portal coupling, λhϕ ≲3.5 × 10−11. The reheating temperature is then constrained to be Treh ≲10¹⁴ GeV by the positivity bounds on the dark matter mass.</p></details>
+<a class="email" href="mailto:kimiko.yamashita.nd93@vc.ibaraki.ac.jp">✉ kimiko.yamashita.nd93@vc.ibaraki.ac.jp</a>
+</article>
+<article class="card" data-search="Takuya Takahashi Relativistic frequency shifts gravitational waves axion clouds University of Tokyo RESCEU superradiance black hole perturbation continuous waves Ultralight bosons, such as axions, are among the best-motivated candidates for physics beyond the Standard Model. Around rotating black holes (BHs), superradiance can lead to the spontaneous growth of axion clouds. Such clouds emit continuous gravitational waves (GWs) and therefore constitute important targets for current and future GW detectors. For practical continuous GW searches, accurate predictions of the GW frequency are essential. In this work, we apply a recently developed framework based on bilinear products in BH perturbation theory to compute frequency shifts induced by self-interaction and self-gravity of axion clouds. In particular, this method enables the calculation of frequency shifts for the emission channel expected to produce the strongest GW signal. I will present these results, and discuss the prospects for probing axions through continuous GW observations.">
+<span class="tag">Axions · GWs</span>
+<h2>Relativistic Frequency Shifts of Gravitational Waves from Axion Clouds</h2>
+<p class="speaker">Takuya Takahashi</p>
+<p class="affiliation">The University of Tokyo</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>Ultralight bosons, such as axions, are among the best-motivated candidates for physics beyond the Standard Model. Around rotating black holes (BHs), superradiance can lead to the spontaneous growth of axion clouds. Such clouds emit continuous gravitational waves (GWs) and therefore constitute important targets for current and future GW detectors. For practical continuous GW searches, accurate predictions of the GW frequency are essential. In this work, we apply a recently developed framework based on bilinear products in BH perturbation theory to compute frequency shifts induced by self-interaction and self-gravity of axion clouds. In particular, this method enables the calculation of frequency shifts for the emission channel expected to produce the strongest GW signal. I will present these results, and discuss the prospects for probing axions through continuous GW observations.</p></details>
+<a class="email" href="mailto:takuya.takahashi@resceu.s.u-tokyo.ac.jp">✉ takuya.takahashi@resceu.s.u-tokyo.ac.jp</a>
+</article>
+<article class="card" data-search="Daiki Watarai Inspiral transition plunge gravitational waveforms beyond Kerr Kerr Newman RESCEU University Tokyo Einstein Telescope charge constraints Binary black hole mergers with asymmetric component masses are key targets for both thirdgeneration ground-based and future space-based gravitational-wave (GW) detectors, offering unique access to the strong-field dynamics of gravity. The evolution is commonly divided into three stages: the adiabatic inspiral, the transition, and the plunge. To date, constructions of inspiraltransitionplunge waveforms have largely focused on Schwarzschild or Kerr background spacetimes. In this paper, we extend these efforts to spacetimes beyond Kerr by constructing such waveforms in a Kerr–Newman background. For simplicity, we allow the primary black hole to carry spin and charge while keeping the secondary object neutral and non-spinning. We work in the small charge-to-mass ratio regime and adopt the Dudley–Finley approximation, in which the gravitational and electromagnetic perturbations decouple. In particular, the gravitational sector satisfies a Teukolsky-like equation, enabling only minimal modifications relative to the Kerr case when constructing the waveform. Having the inspiral-transtion-plunge waveforms in hand, we studied observational prospects for constraining the charge of the central black hole. We find that, for intermediate–mass–ratio mergers observed with the Einstein Telescope, explicitly modeling the post-inspiral dynamics significantly tightens charge-to-mass ratio constraints. In particular, the bounds on the charge-to-mass ratio can reach O(10−3) in the region of primary masses and spins where the post-inspiral signal dominates, yielding charge bounds that can be orders of magnitude tighter than those obtained from the inspiral alone or from the current bound with GW150914. These results lay the groundwork for inspiral-transition-plunge waveform modeling in beyondKerr spacetimes and for probing non-Kerr signatures in future GW observations.">
+<span class="tag">Waveforms</span>
+<h2>Inspiral–Transition–Plunge Gravitational Waveforms Beyond Kerr: A Kerr–Newman Case Study</h2>
+<p class="speaker">Daiki Watarai</p>
+<p class="affiliation">RESCEU / The University of Tokyo</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>Binary black hole mergers with asymmetric component masses are key targets for both thirdgeneration ground-based and future space-based gravitational-wave (GW) detectors, offering unique access to the strong-field dynamics of gravity. The evolution is commonly divided into three stages: the adiabatic inspiral, the transition, and the plunge. To date, constructions of inspiraltransitionplunge waveforms have largely focused on Schwarzschild or Kerr background spacetimes. In this paper, we extend these efforts to spacetimes beyond Kerr by constructing such waveforms in a Kerr–Newman background. For simplicity, we allow the primary black hole to carry spin and charge while keeping the secondary object neutral and non-spinning. We work in the small charge-to-mass ratio regime and adopt the Dudley–Finley approximation, in which the gravitational and electromagnetic perturbations decouple. In particular, the gravitational sector satisfies a Teukolsky-like equation, enabling only minimal modifications relative to the Kerr case when constructing the waveform. Having the inspiral-transtion-plunge waveforms in hand, we studied observational prospects for constraining the charge of the central black hole. We find that, for intermediate–mass–ratio mergers observed with the Einstein Telescope, explicitly modeling the post-inspiral dynamics significantly tightens charge-to-mass ratio constraints. In particular, the bounds on the charge-to-mass ratio can reach O(10−3) in the region of primary masses and spins where the post-inspiral signal dominates, yielding charge bounds that can be orders of magnitude tighter than those obtained from the inspiral alone or from the current bound with GW150914. These results lay the groundwork for inspiral-transition-plunge waveform modeling in beyondKerr spacetimes and for probing non-Kerr signatures in future GW observations.</p></details>
+<a class="email" href="mailto:wataraidaiki@resceu.s.u-tokyo.ac.jp">✉ wataraidaiki@resceu.s.u-tokyo.ac.jp</a>
+</article>
+<article class="card" data-search="Masashi Kimura Probing higher curvature gravity ringdown overtones Daiichi Institute Technology quasinormal modes black holes GR deviations We investigate metric perturbations of a spherically symmetric black hole in higher curvature gravity. We show that higher curvature corrections deform the near-horizon region of the effective potential, and that the deviations of the quasinormal mode (QNM) frequencies from their general relativity (GR) values become more pronounced for overtone modes. We find that, as the order of the higher curvature term increases, the deformations approach the horizon and the deviations of the overtone QNM frequencies grow progressively larger. We also analyze the ringdown waveforms in the higher curvature gravity model. We consider setups in which the deviations from the vacuum-GR QNMs remain mild for the fundamental mode and the first few overtones, and show that these shifted QNMs can be identified in the ringdown signal through waveform fitting.">
+<span class="tag">Ringdown</span>
+<h2>Probing Higher Curvature Gravity via Ringdown with Overtones</h2>
+<p class="speaker">Masashi Kimura</p>
+<p class="affiliation">Daiichi Institute of Technology</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>We investigate metric perturbations of a spherically symmetric black hole in higher curvature gravity. We show that higher curvature corrections deform the near-horizon region of the effective potential, and that the deviations of the quasinormal mode (QNM) frequencies from their general relativity (GR) values become more pronounced for overtone modes. We find that, as the order of the higher curvature term increases, the deformations approach the horizon and the deviations of the overtone QNM frequencies grow progressively larger. We also analyze the ringdown waveforms in the higher curvature gravity model. We consider setups in which the deviations from the vacuum-GR QNMs remain mild for the fundamental mode and the first few overtones, and show that these shifted QNMs can be identified in the ringdown signal through waveform fitting.</p></details>
+<a class="email" href="mailto:masashi.kimura.gr@gmail.com">✉ masashi.kimura.gr@gmail.com</a>
+</article>
+<article class="card" data-search="Leonardo Wimmer N-body next-to-leading order gravitational spin-orbit coupling effective field theory University Tokyo ICRR PN EFT Hamiltonian spinning bodies Using the post-Newtonian effective field theory (PN-EFT) formalism for spinning gravitating bodies, we derive the next-to-leading-order (NLO) spin-orbit potential and Hamiltonian for a system of N spinning bodies in general relativity. This extends the EFT treatment of the binary case to arbitrary N. Beyond the binary sector, the only new contributions arise from genuine threebody interaction diagrams. After a canonical transformation, the resulting canonical Hamiltonian agrees with the known ADM N-body Hamiltonian derived by Hartung and Steinhoff.">
+<span class="tag">PN · EFT</span>
+<h2>N-body Next-to-Leading Order Gravitational Spin-Orbit Coupling in an Effective Field Theory Approach</h2>
+<p class="speaker">Leonardo Wimmer</p>
+<p class="affiliation">The University of Tokyo, ICRR</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>Using the post-Newtonian effective field theory (PN-EFT) formalism for spinning gravitating bodies, we derive the next-to-leading-order (NLO) spin-orbit potential and Hamiltonian for a system of N spinning bodies in general relativity. This extends the EFT treatment of the binary case to arbitrary N. Beyond the binary sector, the only new contributions arise from genuine threebody interaction diagrams. After a canonical transformation, the resulting canonical Hamiltonian agrees with the known ADM N-body Hamiltonian derived by Hartung and Steinhoff.</p></details>
+<a class="email" href="mailto:wimmer@icrr.u-tokyo.ac.jp">✉ wimmer@icrr.u-tokyo.ac.jp</a>
+</article>
+<article class="card" data-search="Kouji Nakamura Theoretical Detailed Analyses DC readout Fabry-Perot gravitational-wave detector National Astronomical Observatory Japan KAGRA quantum noise The quantum expectation value and the stationary noise spectral density for a Fabry-Pérot gravitationalwave detector with a DC readout scheme are discussed in detail only through the quantum electrodynamics of lasers and the Heisenberg equations of mirrors’ motion. We demonstrate that the initial conditions of the mirrors’ motion concentrate around the fundamental frequency of the pendulum and are not related to the frequency range of our interest. Although, in the ideal case, there is consensus that the shot-noise contribution from the laser to the high-frequency range of the signal-referred noise spectral density decreases as the injected laser power increases, our derived noise spectral density shows that the shot-noise contribution does not decrease. This is due to leakage of classical radiation pressure forces from the carrier field to the output port, and the carrier field is used as the reference in the DC readout scheme. Since classical radiation pressure acts as a constant force, it shifts the pendulum’s equilibrium point of the mirrors’ motion. To recover the ideal case, we must consider adjusting the interferometer’s tuning point to place the mirrors at their equilibrium positions. We investigate the case where the equilibrium tuning is incomplete and show that the behavior of the above shot noise is due to this incompleteness. We also discuss the maximum deviation of the mirror displacements from the equilibrium point during incomplete tuning to recover a near-ideal case.">
+<span class="tag">GW detectors</span>
+<h2>Theoretical Detailed Analyses for DC Readout and a Fabry-Pérot Gravitational-Wave Detector</h2>
+<p class="speaker">Kouji Nakamura</p>
+<p class="affiliation">National Astronomical Observatory of Japan, Gravitational-Wave Science Project</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>The quantum expectation value and the stationary noise spectral density for a Fabry-Pérot gravitationalwave detector with a DC readout scheme are discussed in detail only through the quantum electrodynamics of lasers and the Heisenberg equations of mirrors’ motion. We demonstrate that the initial conditions of the mirrors’ motion concentrate around the fundamental frequency of the pendulum and are not related to the frequency range of our interest. Although, in the ideal case, there is consensus that the shot-noise contribution from the laser to the high-frequency range of the signal-referred noise spectral density decreases as the injected laser power increases, our derived noise spectral density shows that the shot-noise contribution does not decrease. This is due to leakage of classical radiation pressure forces from the carrier field to the output port, and the carrier field is used as the reference in the DC readout scheme. Since classical radiation pressure acts as a constant force, it shifts the pendulum’s equilibrium point of the mirrors’ motion. To recover the ideal case, we must consider adjusting the interferometer’s tuning point to place the mirrors at their equilibrium positions. We investigate the case where the equilibrium tuning is incomplete and show that the behavior of the above shot noise is due to this incompleteness. We also discuss the maximum deviation of the mirror displacements from the equilibrium point during incomplete tuning to recover a near-ideal case.</p></details>
+<a class="email" href="mailto:dr.kouji.nakamura@gmail.com">✉ dr.kouji.nakamura@gmail.com</a>
+</article>
+<article class="card" data-search="Nao Nakamoto Direct waves black hole ringdowns theory detectability Kyoto University Teukolsky Sasaki Nakamura non modal component ringdown Merger gravitational waves from binary black hole coalescence cannot be fully captured by a quasinormal mode (QNM) description alone. Recent work has identified a non-modal component—the direct wave—arising from the instantaneous motion of the companion plunging near the light ring of the remnant black hole, whose observable signature is modulated by the gravitational potential barrier. In my talk, I will discuss the theoretical aspects of direct waves in Kerr spacetime using the Teukolsky and Sasaki-Nakamura formalisms. I will also discuss its detectability by modeling direct-wave waveforms.">
+<span class="tag">Ringdown</span>
+<h2>Direct Waves in Black Hole Ringdowns: Theory and Detectability</h2>
+<p class="speaker">Nao Nakamoto</p>
+<p class="affiliation">Theoretical Astrophysics Group, Department of Physics, Kyoto University</p>
+<details class="abstract-box" open=""><summary>Abstract</summary><p>Merger gravitational waves from binary black hole coalescence cannot be fully captured by a quasinormal mode (QNM) description alone. Recent work has identified a non-modal component—the direct wave—arising from the instantaneous motion of the companion plunging near the light ring of the remnant black hole, whose observable signature is modulated by the gravitational potential barrier. In my talk, I will discuss the theoretical aspects of direct waves in Kerr spacetime using the Teukolsky and Sasaki-Nakamura formalisms. I will also discuss its detectability by modeling direct-wave waveforms.</p></details>
+<a class="email" href="mailto:phy.sics.phy.sics.phy@gmail.com">✉ phy.sics.phy.sics.phy@gmail.com</a>
+</article>
+</section>
+<footer></footer>
+</main>
+<script>
+    const input = document.getElementById('searchInput');
+    const cards = Array.from(document.querySelectorAll('.card'));
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      let shown = 0;
+      cards.forEach(card => {
+        const haystack = (card.innerText + ' ' + card.dataset.search).toLowerCase();
+        const match = !q || haystack.includes(q);
+        card.style.display = match ? 'flex' : 'none';
+        if (match) shown++;
+      });
+    });
+  </script>
+</body>
+</html>
